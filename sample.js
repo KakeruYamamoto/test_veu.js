@@ -20,8 +20,15 @@ var app = new Vue({
   // methodsに、Vue.jsのインスタンスに使用させたいメソッドを記載する
   methods: {
     addStudent: function() {
-        // この function() { } の中にaddStudentメソッド
-        // （入力欄に入力された値と、ID値（最後に登録されたID値+1の値）が新たに出現する機能）の処理を書く
+        var max = this.students.reduce(function (a, b) {
+       return a > b.id ? a : b.id
+     }, 0)
+      this.students.push({
+        id: max + 1,
+        name: this.name,
+        cource: this.cource,
+        acceptancePeriod: this.acceptancePeriod
+        })
     }
   }
 })
